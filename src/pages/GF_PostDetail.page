@@ -1,0 +1,86 @@
+<!-- 
+ *************************************************************
+ * Description      : VF Page for GF Post Detail Page
+ * @author          : Shermal Warnakula
+ * @since           : 15 Dec 2014
+ ************************************************************* 
+ -->
+<apex:page cache="true" standardController="Geo_Location__c" extensions="GF_PostDetailExtension" doctype="html-5.0" standardStylesheets="false" showHeader="false" sideBar="false" applyHtmlTag="false">
+
+    <apex:form >
+        <html>
+        
+            <head>
+                <c:GF_CommonImports ></c:GF_CommonImports>
+            </head>
+                 
+            <body>
+                
+                <div class="panel panel-primary">
+                
+                    <c:GF_Header pgId="5" infoName="{!Geo_Location__c.Name}" />
+
+                    <div class="panel-body">
+                            <div class="bs-example">
+                                <div class="well">
+                                    <p class="bg-info">
+        
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <p class="text-center">
+                                                    <img data-src="holder.js/350x400" class="img-rounded" src="{!postImage}" data-holder-rendered="true" style="width: 100%; height: 100;" onerror="this.src='{!URLFOR($Resource.resources, 'resources/img/NoImage.png')}';" />
+                                                </p>
+                                            </div>
+                                             
+                                            <div class="btn-group btn-group-justified ng-cloak">
+                                                <a style="width:auto; border: 1px groove #020303;" class="btn btn-primary" href='http://www.facebook.com'><img src="{!URLFOR($Resource.resources, 'resources/img/f.png')}" data-holder-rendered="true" /></a>
+                                                <a style="width:auto; border: 1px groove #020303;" class="btn btn-primary" href='http://www.twitter.com'><img src="{!URLFOR($Resource.resources, 'resources/img/t.png')}" data-holder-rendered="true" /></a>
+                                                <a style="width:auto; border: 1px groove #020303;" class="btn btn-primary" href='http://www.linkedin.com'><img src="{!URLFOR($Resource.resources, 'resources/img/l.png')}" data-holder-rendered="true" /></a>
+                                                <a style="width:auto; border: 1px groove #020303;" class="btn btn-primary" href='http://www.googleplus.com'><img src="{!URLFOR($Resource.resources, 'resources/img/g.png')}" data-holder-rendered="true" /></a>
+                                            </div>
+                                                                                        
+                                          <apex:outputPanel styleClass="form-group" rendered="{!postEditable}">
+                                               <div class="form-group">
+                                                   <h3>
+                                                       <apex:outputLabel value="{!Geo_Location__c.Title__c}" html-placeholder="Post Title" rendered="{!Geo_Location__c.Title__c !=null}"/>
+                                                   </h3>
+                                               </div>
+                                               <div class="form-group">
+                                                   <apex:outputLabel value="{!Geo_Location__c.Description__c}" html-placeholder="Post Description" rendered="{!Geo_Location__c.Description__c!=null}"/>
+                                               </div>
+                                          </apex:outputPanel>
+                                          
+                                          <apex:outputPanel styleClass="form-group" rendered="{!!postEditable}">
+                                               <div class="form-group">
+                                                   <h6>
+                                                       <apex:inputText styleClass="form-control" value="{!Geo_Location__c.Title__c}" id="PostTitleID"  html-placeholder="Post Title"/>
+                                                   </h6>
+                                               </div>
+                                               <div class="form-group">
+                                                   <apex:inputTextarea styleClass="form-control" value="{!Geo_Location__c.Description__c}" id="PostDescriptionID" rows="3" html-placeholder="Post Description"/>
+                                               </div>
+                                          </apex:outputPanel>
+                                          
+                                          <div class="btn-group btn-group-justified ng-cloak" style="text-align: center;">     
+                                              <apex:commandButton value="Cancel" action="{!Cancel}" style="width:auto;" styleClass="btn btn-primary" rendered="{!!postEditable}" onClick="showBlocker();" />
+                                              <apex:commandButton value="Delete" action="{!remove}" style="width:auto;" styleClass="btn btn-primary" rendered="{!!postEditable}" onClick="showBlocker();"/>
+                                              <apex:commandButton value="Save" action="{!Save}" style="width:auto;" styleClass="btn btn-primary" id="photoButton" rendered="{!!postEditable}" onClick="showBlocker();"/>                    
+                                              <apex:commandButton value="Edit" action="{!Edit}" style="width:auto;" styleClass="btn btn-primary" rendered="{!postEditable}" onClick="showBlocker();"/>
+                                          </div>
+                                          
+                                          <apex:pagemessages />
+
+                                    </form>
+                                </p>
+                                <c:GF_Footer pgId="5" /> 
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </body>
+            
+        </html>
+    </apex:form>
+
+
+</apex:page>
